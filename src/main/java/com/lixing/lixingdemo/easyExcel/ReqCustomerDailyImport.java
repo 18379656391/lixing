@@ -1,7 +1,9 @@
 package com.lixing.lixingdemo.easyExcel;
 
 import com.alibaba.excel.annotation.ExcelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
@@ -11,6 +13,8 @@ import java.math.BigDecimal;
  * @date: 2022-01-06 15:03
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ReqCustomerDailyImport {
 
     /**
