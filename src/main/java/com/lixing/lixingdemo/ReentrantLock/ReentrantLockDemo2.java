@@ -13,7 +13,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * 公平锁的实现：谁等的时间最长，谁就先获得锁
  */
 public class ReentrantLockDemo2 {
-    // true实现公平锁,false默认为空表示非公平锁，cup时间片轮转到哪个线程哪个线程就先获得锁
+    // true实现公平锁,false默认为空表示非公平锁，cpu时间片轮转到哪个线程哪个线程就先获得锁
     public static final Lock lock = new ReentrantLock(true);
 
     public static void main(String[] args) {

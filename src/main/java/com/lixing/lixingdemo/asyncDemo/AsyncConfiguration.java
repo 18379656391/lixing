@@ -6,6 +6,7 @@ import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
+import org.springframework.scheduling.annotation.AsyncConfigurerSupport;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
@@ -16,6 +17,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @version: 1.0
  * @author: lixing41189
  * @date: 2021-12-20 10:35
+ * 自定义异步线程池：1.实现AsyncConfigurer接口 2.继承AsyncConfigurerSupport类
  */
 @Configuration
 @EnableAsync

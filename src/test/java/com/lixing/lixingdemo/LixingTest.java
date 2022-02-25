@@ -3,13 +3,17 @@ package com.lixing.lixingdemo;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.lixing.lixingdemo.FunctionalInterface.FunctionUtils;
+import com.lixing.lixingdemo.applicationListener.EmailEvent;
+import com.lixing.lixingdemo.applicationListener.EventPublisher;
 import com.parseObjectDemo.TestClassA;
 import com.parseObjectDemo.TestClassB;
+import com.spire.ms.System.Exception;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Optional;
 
 /**
  * @version: 1.0
@@ -59,5 +63,17 @@ public class LixingTest {
     @Test
     public void EmptyTest() {
         FunctionUtils.emptyHandler("sss").emptyHandle(consumer -> System.out.println("字符串不为空，字符串被消费"),() -> System.out.println("字符串为空"));
+    }
+
+    @Test
+    public void optionalTest(){
+        String accountNo = "";
+        Optional.ofNullable(accountNo).filter(acc -> acc.split(",").length <= 10).orElseThrow(() -> new Exception("联机查询一次账户数量不能超过10个"));
+    }
+
+    @Test
+    public void listenerTest(){
+        EmailEvent emailEvent = new EmailEvent("hello", "test@test.com", "test content");
+        EventPublisher.publicEvent(emailEvent);
     }
 }
