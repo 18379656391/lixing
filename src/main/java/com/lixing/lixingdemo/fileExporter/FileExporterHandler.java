@@ -37,7 +37,7 @@ public class FileExporterHandler {
         if (StringUtils.isNotBlank(inputDTO.getFileName())) {
             inputDTO.setPageIndex(1);
             inputDTO.setPageSize(1);
-            // 获取练级诶单的方法签名对象
+            // 获取连接点的方法签名对象
             Signature signature = joinPoint.getSignature();
             MethodSignature methodSignature = (MethodSignature) signature;
             Method method = joinPoint.getTarget().getClass().getMethod(methodSignature.getName(), methodSignature.getParameterTypes());

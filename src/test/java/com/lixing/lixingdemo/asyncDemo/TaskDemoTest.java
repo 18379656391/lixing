@@ -39,8 +39,21 @@ class TaskDemoTest {
     void testTask() {
         long t1 = System.currentTimeMillis();
         for (int i = 0; i <5 ; i++) {
-            taskDemo.taskRun1(); // 2005
+            //taskDemo.taskRun1(); // 2005
             taskDemo.taskRun2(); // 3009
+        }
+        Thread.sleep(1000);
+        long t2 = System.currentTimeMillis();
+        System.out.println(Thread.currentThread().getName()+"--main cost" + (t2 - t1)); //1018
+        Thread.sleep(10000);
+    }
+
+    @Test
+    @SneakyThrows
+    void testTask1() {
+        long t1 = System.currentTimeMillis();
+        for (int i = 0; i <5 ; i++) {
+            taskDemo.test3();
         }
         Thread.sleep(1000);
         long t2 = System.currentTimeMillis();

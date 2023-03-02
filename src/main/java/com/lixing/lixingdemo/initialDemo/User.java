@@ -7,6 +7,9 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 /**
  * @version: 1.0
  * @author: lixing41189
@@ -40,12 +43,22 @@ public class User implements ApplicationContextAware, InitializingBean, Disposab
         System.out.println("("+Thread.currentThread().getName()+")2-->设置bean的age属性");
     }
 
+    @PostConstruct
+    public void postConstructMethod(){
+        System.out.println("("+Thread.currentThread().getName()+")-->调用postConstruct初始化方法");
+    }
+
     public void init(){
         System.out.println("("+Thread.currentThread().getName()+")6-->调用init-method指定的属性指定的方法");
     }
 
     public void myDestroy() {
         System.out.println("("+Thread.currentThread().getName()+")9-->调用destroy-method指定的属性指定的方法");
+    }
+
+    @PreDestroy
+    public void preDestroyMethod(){
+        System.out.println("("+Thread.currentThread().getName()+")-->调用preDestroy方法");
     }
 
     @Override
@@ -55,6 +68,7 @@ public class User implements ApplicationContextAware, InitializingBean, Disposab
 
     @Override
     public void afterPropertiesSet() throws Exception {
+        // 给用户最后一次机会来进行赋值或者调用操作
         System.out.println("("+Thread.currentThread().getName()+")5-->调用InitializingBean接口的afterPropertiesSet方法");
     }
 

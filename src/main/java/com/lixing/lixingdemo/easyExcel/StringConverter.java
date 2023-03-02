@@ -39,7 +39,7 @@ public class StringConverter implements Converter<String> {
     }
 
     /**
-     * 将java对象转成String对象，写出的室友会调用
+     * 将java对象转成String对象，写出的数据会调用
      * @param value
      * @param contentProperty
      * @param globalConfiguration

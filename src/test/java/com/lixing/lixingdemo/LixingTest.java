@@ -8,12 +8,17 @@ import com.lixing.lixingdemo.applicationListener.EventPublisher;
 import com.parseObjectDemo.TestClassA;
 import com.parseObjectDemo.TestClassB;
 import com.spire.ms.System.Exception;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.util.StringUtils;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Optional;
+import java.io.File;
+import java.text.*;
+import java.util.*;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @version: 1.0
@@ -24,8 +29,13 @@ import java.util.Optional;
 public class LixingTest {
 
     @Test
+    @SneakyThrows
     public void test() {
-        String testStr1 = "";
+        File originFile = new File("C:\\Users\\hspcadmin\\Desktop\\log.txt");
+        originFile.renameTo(new File(originFile.getAbsolutePath() + "newName.txt"));
+        System.out.println(originFile.getName());
+
+        String testStr1 = "1";
         String testStr2 = "1,2";
         System.out.println(testStr1.split(",").toString());
         System.out.println(testStr2.split(",").toString());
@@ -43,6 +53,45 @@ public class LixingTest {
         String json = JSON.toJSONString(b);
         TestClassA a=JSONObject.parseObject(json, TestClassA.class);
         System.out.println(a);
+        List list = Stream.of(testStr2.split(",")).collect(Collectors.toList());
+        System.out.println(list);
+        System.out.println(list.contains("3"));
+        System.out.println(list.contains("2"));
+
+        List<String> splitList = new ArrayList<>();
+        splitList.add("");
+        splitList.add("");
+        splitList.add("");
+        splitList.add("");
+        String splitStr = splitList.stream().collect(Collectors.joining(","));
+        System.out.println(splitStr);
+        String[] s = splitStr.split(",", -1);
+        System.out.println(Arrays.toString(s));
+
+        String regex = "^([1-9][0-9]|0)\\.[0-9]{2}%$";
+        System.out.println(Pattern.matches(regex, "99.99%"));
+        System.out.println("------------------------------");
+        double num = 423453451.000000;
+        NumberFormat format1 = NumberFormat.getInstance();
+        DecimalFormat decimalFormat = new DecimalFormat(",##0.00");
+        System.out.println(format1.format(num));
+        System.out.println(decimalFormat.format(num));
+
+        Map<String, String> testMap = new HashMap<>();
+        testMap.put("1", "one");
+        testMap.put("2", "two");
+        String str = "";
+        String reportYear = Arrays.stream(str.split(",")).map(item -> StringUtils.isBlank(item) ? "" : testMap.get(item))
+                .collect(Collectors.joining(","));
+        System.out.println("reportYear" + reportYear);
+
+        String var1 = "999.99999999";
+        Double var2 = Double.parseDouble(var1);
+        NumberFormat instance = NumberFormat.getInstance();
+        instance.setMaximumFractionDigits(Integer.parseInt("4"));
+        System.out.println(instance.format(var2));
+
+
 
     }
 
