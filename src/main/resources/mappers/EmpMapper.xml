@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lixing.lixingdemo.mybatis.po.PposBaseManginstPo">
+    <resultMap id="BaseResultMap" type="com.lixing.lixingdemo.mybatis.po.PposBaseManginstPo">
+        <id column="id" property="id" />
+        <result column="inst_id" property="instId" />
+        <result column="inst_name" property="instName" />
+        <result column="org_code" property="orgCode" />
+        <result column="manager_type" property="managerType" />
+        <result column="manager_pri_code" property="managerPriCode" />
+        <result column="manager_ta_code" property="managerTaCode" />
+        <result column="manager_duty" property="managerDuty" />
+        <result column="manager_promise" property="managerPromise" />
+        <result column="manage_fund_duty" property="manageFundDuty" />
+        <result column="manage_other_type" property="manageOtherType" />
+        <result column="manage_asset_scale" property="manageAssetScale" />
+        <result column="vip_type" property="vipType" />
+        <result column="private_manager_type" property="privateManagerType" />
+        <result column="investment_scope" property="investmentScope" />
+        <result column="taxpayer_idno" property="taxpayerIdno" />
+        <result column="taxpay_frequency" property="taxpayFrequency" />
+        <result column="taxpayer_type" property="taxpayerType" />
+        <result column="taxoffice_location" property="taxofficeLocation" />
+        <result column="amac_member" property="amacMember" />
+        <result column="special_info" property="specialInfo" />
+        <result column="other_special_reamrk" property="otherSpecialReamrk" />
+        <result column="member_no_shse" property="memberNoShse" />
+        <result column="member_name_shse" property="memberNameShse" />
+        <result column="member_no_szse" property="memberNoSzse" />
+        <result column="member_name_szse" property="memberNameSzse" />
+        <result column="front_end_risk" property="frontEndRisk" />
+        <result column="nature_issuer" property="natureIssuer" />
+        <result column="manager_raise_no" property="managerRaiseNo" />
+        <result column="access_level" property="accessLevel" />
+        <result column="access_level_detail" property="accessLevelDetail" />
+        <result column="data_source" property="dataSource" />
+        <result column="creator" property="creator" />
+        <result column="modifier" property="modifier" />
+        <result column="gmt_create" property="gmtCreate" />
+        <result column="gmt_modified" property="gmtModified" />
+        <result column="inst_short_name" property="instShortName" />
+        <result column="business_license" property="businessLicense" />
+        <result column="license_effective_date_type" property="licenseEffectiveDateType" />
+        <result column="license_effective_date" property="licenseEffectiveDate" />
+        <result column="reg_address" property="regAddress" />
+        <result column="manager_code" property="managerCode" />
+        <result column="citizenship" property="citizenship" />
+        <result column="contact" property="contact" />
+        <result column="certificate_type" property="certificateType" />
+        <result column="certificate_no" property="certificateNo" />
+        <result column="email" property="email" />
+        <result column="mobile" property="mobile" />
+        <result column="telephone" property="telephone" />
+        <result column="fax" property="fax" />
+        <result column="website" property="website" />
+        <result column="postal_code" property="postalCode" />
+        <result column="address" property="address" />
+        <result column="remark" property="remark" />
+        <result column="other_certificate_type" property="otherCertificateType" />
+        <result column="register_date" property="registerDate" />
+        <result column="license_type" property="licenseType" />
+        <result column="license_other_name" property="licenseOtherName" />
+        <result column="license_date_start" property="licenseDateStart" />
+        <result column="org_date_start" property="orgDateStart" />
+        <result column="org_date_end" property="orgDateEnd" />
+        <result column="taxpayer_date_start" property="taxpayerDateStart" />
+        <result column="taxpayer_date_end" property="taxpayerDateEnd" />
+        <result column="industry" property="industry" />
+        <result column="business_scope" property="businessScope" />
+        <result column="registered_currency" property="registeredCurrency" />
+        <result column="registered_capital" property="registeredCapital" />
+        <result column="province" property="province" />
+        <result column="city" property="city" />
+        <result column="district" property="district" />
+        <result column="ass_register_flag" property="assRegisterFlag" />
+        <result column="arbitration_flag" property="arbitrationFlag" />
+        <result column="punish_flag" property="punishFlag" />
+        <result column="ass_satisfy_flag" property="assSatisfyFlag" />
+        <result column="effective_date" property="effectiveDate" />
+        <result column="vat_file_id" property="vatFileId" />
+        <result column="business_legal_person_type" property="businessLegalPersonType" />
+        <result column="business_legal_representative" property="businessLegalRepresentative" />
+        <result column="business_registered_capital" property="businessRegisteredCapital" />
+        <result column="business_date_of_establish" property="businessDateOfEstablish" />
+        <result column="license_effective_start_date" property="licenseEffectiveStartDate" />
+        <result column="business_license_name" property="businessLicenseName" />
+        <result column="business_license_type" property="businessLicenseType" />
+        <result column="is_business_license" property="isBusinessLicense" />
+        <result column="major_business" property="majorBusiness" />
+        <result column="business_address" property="businessAddress" />
+
+    </resultMap>
+
+    <select id="getManginst" parameterType="Map" resultMap="BaseResultMap">
+        select * from ppos_base_manginst where inst_id = #{instId}
+    </select>
+</mapper>

@@ -1,0 +1,26 @@
+**********************************************************
+集群：配置     服务器：root@10.20.144.214:22
+2022-07-12 09:12:45   停止  总耗时：625ms
+egrep "^comp" /etc/passwd >& /dev/null; if [ $? -ne 0 ];then echo 0;else if [ -f '/home/comp/jrescloud-scheduler/scripts/stop.sh' ];then cd '/home/comp/jrescloud-scheduler'; sh '/home/comp/jrescloud-scheduler/scripts/stop.sh' ;else echo 0; fi; fi
+
+执行成功(OK)。
+
+2022-07-12 09:12:51   停止检测  总耗时：1511ms
+egrep "^comp" /etc/passwd >& /dev/null; if [ $? -ne 0 ]; then echo 0; else if [ -f '/home/comp/jrescloud-scheduler/scripts/validateStop.sh' ];then cd '/home/comp/jrescloud-scheduler';sh '/home/comp/jrescloud-scheduler/scripts/validateStop.sh' ; else echo 0; fi; fi
+
+0
+
+
+2022-07-12 09:12:52   启动  总耗时：120035ms
+cd '/home/comp/jrescloud-scheduler'; sh '/home/comp/jrescloud-scheduler/scripts/start.sh' ;
+
+Error: Unable to access jarfile /home/comp/jrescloud-scheduler/scheduler_process/jrescloud-scheduler.jar
+Command execute timeout.
+
+2022-07-12 09:14:57   启动检测  总耗时：11514ms
+egrep "^comp" /etc/passwd >& /dev/null; if [ $? -ne 0 ]; then echo 0; else if [ -f '/home/comp/jrescloud-scheduler/scripts/validateStart.sh' ];then cd '/home/comp/jrescloud-scheduler';sh '/home/comp/jrescloud-scheduler/scripts/validateStart.sh' ;else echo 0; fi; fi
+
+应用启动失败[start failed]。
+
+
+**********************************************************
