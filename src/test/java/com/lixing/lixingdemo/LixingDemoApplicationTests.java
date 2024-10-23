@@ -2,6 +2,8 @@ package com.lixing.lixingdemo;
 
 import com.alibaba.fastjson.JSON;
 import com.lixing.lixingdemo.pojo.Student;
+import org.apache.curator.framework.CuratorFramework;
+import org.apache.curator.framework.recipes.locks.InterProcessMutex;
 import org.apache.lucene.util.QueryBuilder;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.bulk.BulkRequest;
@@ -36,6 +38,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,6 +52,28 @@ class LixingDemoApplicationTests {
     @Autowired
     @Qualifier("restHighLevelClient")
     private RestHighLevelClient client;
+
+
+    @Resource
+    private CuratorFramework curatorFramework;
+
+    /**
+     * InterProcessMutex：分布式可重入排它锁
+     * InterProcessSemaphoreMutex：分布式排它锁
+     * InterProcessReadWriteLock：分布式读写锁
+     */
+    @Test
+    void testZookeeperLock() throws Exception {
+        InterProcessMutex lock = new InterProcessMutex(curatorFramework, "/testLock");
+        try {
+            lock.acquire();
+            System.out.println("获取zookeeper分布式锁成功---");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            lock.release();
+        }
+    }
 
     @Test
     void testCreateIndex() throws IOException {

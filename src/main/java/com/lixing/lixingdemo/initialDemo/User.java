@@ -9,13 +9,21 @@ import org.springframework.context.ApplicationContextAware;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.io.Serializable;
 
 /**
  * @version: 1.0
  * @author: lixing41189
  * @date: 2022-02-07 16:08
  */
-public class User implements ApplicationContextAware, InitializingBean, DisposableBean {
+public class User implements ApplicationContextAware, InitializingBean, DisposableBean, Serializable {
+
+    static{
+        System.out.println("("+Thread.currentThread().getName()+")001-->静态代码块执行了");
+    }
+    {
+        System.out.println(this.getClass().getName() + "("+Thread.currentThread().getName()+")002-->普通代码块执行了");
+    }
 
     private String name;
 

@@ -22,6 +22,12 @@ import java.util.concurrent.TimeUnit;
  * completableFuture使用场景：1.创建异步任务 2.简单任务异步回调 3.多个任务组合处理
  * completableFuture默认使用ForkJoinPool.commonPool()
  * 两种创建异步任务的方法  1.supplyAsync()(支持返回值)  2.runAsync()(不关注返回值)
+ *
+ * 将多个异步任务合并，主线程等待全部异步线程执行完
+ * List<CompletableFuture> futures = handSpecialDownLoadFile(specialMap, input, excelSourceFilePath, pdfSourceFilePath); -- list.add(tempFuture);
+ * CompletableFuture<Void> future = CompletableFuture.allOf(futures.toArray(new CompletableFuture[futures.size()]));
+ * future.join();
+ *     
  */
 @Component
 public class CompletableFutureTest implements ApplicationContextAware {

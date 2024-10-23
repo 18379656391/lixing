@@ -1,0 +1,2 @@
+org.springframework.context.ApplicationListener=com.lixing.lixingdemo.applicationListener.SpringApplicationEventListener,com.lixing.lixingdemo.log.MyLoggingListener
+

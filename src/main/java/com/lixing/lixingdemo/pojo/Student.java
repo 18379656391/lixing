@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 /**
  * @version: 1.0
  * @author: lixing41189
@@ -14,7 +16,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Student {
+public class Student implements Serializable {
 
     private Long stuNo;
 

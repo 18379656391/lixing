@@ -1,13 +1,16 @@
 package com.lixing.lixingdemo;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.lixing.lixingdemo.FunctionalInterface.FunctionUtils;
 import com.lixing.lixingdemo.applicationListener.EmailEvent;
 import com.lixing.lixingdemo.applicationListener.EventPublisher;
-import com.parseObjectDemo.TestClassA;
-import com.parseObjectDemo.TestClassB;
+import com.lixing.lixingdemo.parseObjectDemo.TestClassA;
+import com.lixing.lixingdemo.parseObjectDemo.TestClassB;
 import com.spire.ms.System.Exception;
+import com.util.ReadJsonFileUtil;
+import com.util.UniqueIdGenerator;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.util.StringUtils;
@@ -31,6 +34,44 @@ public class LixingTest {
     @Test
     @SneakyThrows
     public void test() {
+        System.out.println(new String("12").split(",").length);
+        System.out.println("id generate---" + UniqueIdGenerator.getInstance().nextId().toString());
+        JSONArray array = ReadJsonFileUtil.readJsonFile("api0703.json");
+        JSONArray array1 = new JSONArray();
+        for (int i = 0; i < array.size(); i++) {
+            JSONObject jsonObject = array.getJSONObject(i);
+            JSONObject tempObj = new JSONObject();
+            tempObj.put("description", jsonObject.getString("description"));
+            tempObj.put("name", jsonObject.getString("name"));
+            array1.add(tempObj);
+        }
+        System.out.println(array1.toJSONString());
+        StringBuffer sb = new StringBuffer();
+        sb.append("hello，");
+        System.out.println(sb.replace(sb.length() - 1, sb.length(), "；"));
+        String MSG2 = "客户$" + "{khmc} 产品$" + "{cpdm} $" + "{cpmc}，购买日期为$" + "{sqrq} 确认份额$" + "{qrfe},锁定期到$" + "{ktshsqr}。";
+        Map<String,Object> replaceMap = new LinkedHashMap<>();
+        replaceMap.put("khmc", "aaa");
+        replaceMap.put("cpdm", "bbb");
+        replaceMap.put("cpmc", "ccc");
+        replaceMap.put("sqrq", "ddd");
+        replaceMap.put("qrfe", "ccc");
+        replaceMap.put("ktshsqr", null);
+        // 记录}的位置
+        int lastIndex = 0;
+        for (Map.Entry<String, Object> entry : replaceMap.entrySet()) {
+            String key = (String)entry.getKey();
+            int currentIndex = MSG2.indexOf(key) + key.length();
+            if (null == entry.getValue() || org.apache.commons.lang3.StringUtils.isBlank((String)String.valueOf(entry.getValue()))) {
+                MSG2 = MSG2.replace(MSG2.substring(lastIndex + 1, currentIndex + 1), "");
+            }
+            lastIndex = currentIndex;
+        }
+
+        System.out.println(MSG2.replace(MSG2.substring(9, 19), ""));
+        System.out.println(MSG2.indexOf("khmc"));
+        System.out.println(MSG2.indexOf("cpdm"));
+        System.out.println(null == JSONObject.parseObject("", genericTest.class));
         File originFile = new File("C:\\Users\\hspcadmin\\Desktop\\log.txt");
         originFile.renameTo(new File(originFile.getAbsolutePath() + "newName.txt"));
         System.out.println(originFile.getName());

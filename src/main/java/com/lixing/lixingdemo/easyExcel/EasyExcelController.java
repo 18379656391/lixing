@@ -2,15 +2,11 @@ package com.lixing.lixingdemo.easyExcel;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.converters.string.StringStringConverter;
+import com.alibaba.excel.write.builder.ExcelWriterBuilder;
 import com.alibaba.excel.write.style.column.LongestMatchColumnWidthStyleStrategy;
-import javafx.util.StringConverter;
-import jdk.internal.util.xml.impl.Input;
 import org.apache.commons.compress.utils.Lists;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +24,7 @@ import java.util.List;
  * 读取数据流程： 框架读取一行数据 -> 执行转换器(转换数据类型或者格式) -> 执行监听器回调方法（校验） -> 转换异常调用监听器OnException方法
  *
  */
-@Controller
+@RestController
 @ResponseBody
 public class EasyExcelController {
 
