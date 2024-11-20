@@ -80,6 +80,15 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>com.lixing</groupId>
+            <artifactId>lixing-spring-boot-starter</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.76</version>
@@ -101,11 +110,11 @@
             <version>1.14.3</version>
         </dependency>
         <!--视屏音乐爬取-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache</groupId>-->
-<!--            <artifactId>tika</artifactId>-->
-<!--            <version>0.2</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache</groupId>-->
+        <!--            <artifactId>tika</artifactId>-->
+        <!--            <version>0.2</version>-->
+        <!--        </dependency>-->
         <!--转pdf(有转换页数限制)-->
         <dependency>
             <groupId>e-iceblue</groupId>
