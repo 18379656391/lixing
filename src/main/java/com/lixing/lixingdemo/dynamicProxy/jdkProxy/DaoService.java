@@ -1,4 +1,4 @@
-package com.lixing.lixingdemo.dynamicProxy;
+package com.lixing.lixingdemo.dynamicProxy.jdkProxy;
 
 public interface DaoService {
 

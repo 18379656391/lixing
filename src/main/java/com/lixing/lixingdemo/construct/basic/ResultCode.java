@@ -20,7 +20,9 @@ public enum ResultCode implements BasicResultCode{
     REQUEST_TIMEOUT("503", "服务不可用"),
 
     SYSTEM_EXCEPTION("-1", "系统异常"),
-    DATE_EXPIRED("1101", "日期已经过期！");
+    DATE_EXPIRED("1101", "日期已经过期！"),
+
+    PARAM_CHECK_FAILED("1102", "参数校验异常，信息如下:{%s}");
 
     private final String code;
     private final String msg;

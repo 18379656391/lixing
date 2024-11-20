@@ -1,6 +1,8 @@
 package com.lixing.lixingdemo.initialDemo;
 
 import com.alibaba.fastjson.JSON;
+import com.lixing.lixingdemo.dynamicProxy.cglib.CglibProxy;
+import com.lixing.lixingdemo.dynamicProxy.cglib.TargetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
@@ -30,5 +32,10 @@ public class CommandLineTest implements CommandLineRunner {
         System.out.println("("+Thread.currentThread().getName()+")9999-->CommandLineRunner代码执行---");
         //System.out.println("Application started with arguments:" + String.join(",", args));
         //System.out.println("Running in environment:" + environment.getActiveProfiles()[0]);
+        // cglib启动测试
+        TargetService targetService = new TargetService();
+        CglibProxy cglibProxy = new CglibProxy(targetService);
+        TargetService proxyInstance = (TargetService) cglibProxy.getProxyInstance();
+        proxyInstance.delete();
     }
 }

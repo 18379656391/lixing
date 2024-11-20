@@ -26,7 +26,19 @@
         <!--Console：输出到控制台，可以指定输出格式。属性：name:指定Appender的名字 target:指定输出目标，可以是SYSTEM_OUT(默认)或者SYSTEM_ERR-->
         <Console name="Console" target="SYSTEM_OUT">
             <!-- PatternLayout:指定输出格式，不设置默认%m%n。 -->
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <!-- 使用%X包含ThreadContext添加的全部内容   使用%X{key}包括指定的键      -->
+            <!--    %d:        日期和时间，格式为 yyyy-MM-dd HH:mm:ss.SSS
+                    %t:        线程名
+                    %level:    日志级别，并且通过%-5level指定了左对齐并保留至少5个字符宽度
+                    %logger:   完整类名或者Logger名称，这里限制显示36个字符
+                    %msg:      日志消息内容
+                    %n:        换行符
+                    %p:     %-5p，日志级别（简写形式）左对齐且至少占用5个字符宽度。例如："DEBUG"、"INFO"等。
+                    %c:     类名或者Logger名称，这里只显示第一个包的名字
+                    :%L     行号转换器，表示记录该日志事件的方法所在的行号。
+                    %xEx{full,separator=\n===========\n}: 异常堆栈跟踪转换器，它会完整地输出异常及其堆栈跟踪信息，并在每个堆栈帧之间用自定义的分隔符（这里是=======）隔开。这样可以清晰地区分堆栈的不同部分，方便阅读和分析。
+            -->
+            <PatternLayout pattern="%-5level %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] |[%X{request_id}]| %logger{36}:%L - %msg%n"/>
         </Console>
         <!--File：输出到文件，可以指定输出格式和文件名。属性：name:指定Appender的名字 fileName:指定输出文件名，可以是绝对路径或者相对路径，PatternLayout:指定输出格式，不设置默认%m%n。-->
         <!--文件会打印出所有信息，这个log每次运行程序会自动清空，由append属性决定，这个也挺有用的，适合临时测试用 -->

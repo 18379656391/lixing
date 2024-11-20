@@ -3,6 +3,8 @@ package com.lixing.lixingdemo.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.lixing.lixingdemo.annotation.AopIgnore;
+import com.lixing.lixingdemo.annotation.RepeatCommit;
 import com.lixing.lixingdemo.construct.Exception.BusinessException;
 import com.lixing.lixingdemo.construct.HttpMessageConverter.MyEntity;
 import com.lixing.lixingdemo.construct.basic.ResponseResult;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.lang.reflect.Field;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -35,7 +38,7 @@ import java.util.stream.Collectors;
 public class TestController {
 
     @PostMapping(value = "/test")
-    ResponseResult testMethod() {
+    public ResponseResult testMethod() {
         System.out.println("执行controller业务方法----");
         return ResponseResult.success("success");
     }
@@ -61,6 +64,7 @@ public class TestController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/testRequest")
     @SneakyThrows
+    @AopIgnore
     public ResponseResult<TestDTO> testRequest(@RequestBody TestDTO testDTO) {
         Field date = testDTO.getClass().getDeclaredField("date");
         date.setAccessible(true);
@@ -70,6 +74,13 @@ public class TestController {
         if (testDTO.getDate().before(new Date())) {
             throw new BusinessException(ResultCode.DATE_EXPIRED);
         }
+        return ResponseResult.success(testDTO);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/testRepeatCommit")
+    @SneakyThrows
+    @RepeatCommit(key = "#testDTO.date && #testDTO.number", time = 5)
+    public ResponseResult<TestDTO> testRepeatCommit(@RequestBody TestDTO testDTO) {
         return ResponseResult.success(testDTO);
     }
 

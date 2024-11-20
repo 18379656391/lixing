@@ -13,4 +13,9 @@ public class Banana implements Fruit{
     public void sell() {
         System.out.println("banana sell...");
     }
+
+    @Override
+    public String toString() {
+        return "Banana Bean";
+    }
 }

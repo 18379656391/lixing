@@ -14,28 +14,28 @@ import javax.annotation.PostConstruct;
  * @date: 2021-12-16 14:29
  */
 @Component
-public class configLoader implements InitializingBean, ApplicationContextAware {
+public class ConfigLoader implements InitializingBean, ApplicationContextAware {
 
     private static ApplicationContext context;
     @Override
     public void afterPropertiesSet() throws Exception {
-        System.out.println("("+Thread.currentThread().getName()+")开始执行afterPropertiesSet·····");
-        configLoader.initialMethod();
+        System.out.println("("+Thread.currentThread().getName()+ ")["+this.getClass().getName()+"]开始执行afterPropertiesSet·····");
+        ConfigLoader.initialMethod();
     }
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        System.out.println("("+Thread.currentThread().getName()+")开始执行setApplicationContext·····");
+        System.out.println("("+Thread.currentThread().getName()+ ")["+this.getClass().getName()+"]开始执行setApplicationContext·····");
         context = applicationContext;
     }
 
     public static String initialMethod() {
-        System.out.println("("+Thread.currentThread().getName()+")开始加载初始化配置····························");
+        System.out.println("("+Thread.currentThread().getName()+ ")["+ConfigLoader.class.getName()+"]开始加载初始化配置····························");
         return "配置加载完成································";
     }
 
     @PostConstruct
     private void test(){
-        System.out.println("configLoader调用postConstruct方法。。。test:");
+        System.out.println("("+Thread.currentThread().getName()+ ")["+this.getClass().getName()+"]configLoader调用postConstruct方法。。。test:");
     }
 }

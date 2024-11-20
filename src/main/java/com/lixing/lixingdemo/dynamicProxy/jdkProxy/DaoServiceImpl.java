@@ -1,4 +1,4 @@
-package com.lixing.lixingdemo.dynamicProxy;
+package com.lixing.lixingdemo.dynamicProxy.jdkProxy;
 
 import org.springframework.stereotype.Service;
 

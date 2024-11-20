@@ -9,4 +9,6 @@ public class ErrorConstant {
 
     public static final String PARAM_NOT_NULL = "ECODE001";
     public static final String PARAM_NOT_ALLOWED = "ECODE002";
+
+    public static final String REQUEST_FREQUENTLY = "ECODE003";
 }

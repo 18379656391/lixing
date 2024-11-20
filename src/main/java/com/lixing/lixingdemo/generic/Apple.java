@@ -1,5 +1,6 @@
 package com.lixing.lixingdemo.generic;
 
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 
 import java.lang.instrument.IllegalClassFormatException;
@@ -48,6 +49,16 @@ public class Apple extends Fruits {
         List<Fruits> fruits = new ArrayList<>();
         add(fruits, apples);
         count(apples);
+
+
+        // 匿名内部类
+        new Fruits() {
+            @Override
+            protected int count() {
+                System.out.println("匿名内部类重写的count方法执行----");
+                return 0;
+            }
+        }.count();
     }
 
     @Override

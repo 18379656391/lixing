@@ -1,5 +1,6 @@
 package com.lixing.lixingdemo.initialDemo.autoSetter;
 
+import com.google.common.base.Objects;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,5 +13,10 @@ public class Pear implements Fruit{
     @Override
     public void sell() {
         System.out.println("pear sell...");
+    }
+
+    @Override
+    public String toString() {
+        return "Pear Bean";
     }
 }

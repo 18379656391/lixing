@@ -1,4 +1,4 @@
-package com.lixing.lixingdemo.dynamicProxy;
+package com.lixing.lixingdemo.dynamicProxy.jdkProxy;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -16,7 +16,7 @@ public class ProxyInvocationHandler implements InvocationHandler {
         return target;
     }
 
-    //生成得到代理类
+    //通过类加载器和忌口创建代理类
     public Object getProxy() {
         return Proxy.newProxyInstance(this.getClass().getClassLoader(), target.getClass().getInterfaces(), this);
     }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cache="http://www.springframework.org/schema"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    <cache:cacheEntity class="com.hundsun.ppos.basic.dao.po.PposBaseCityPo" key-prefix="pposBaseCityPo" >
+        <cache:cacheKey value="a1"/>
+        <cache:cacheKey value="a2"/>
+        <cache:cacheKey value="a3"/>
+    </cache:cacheEntity>
+
+    <cache:cacheEntity class="com.hundsun.ppos.basic.dao.po.PposBaseCountryPo" key-prefix="pposBaseCountryPo">
+        <cache:cacheKey value="b1"/>
+        <cache:cacheKey value="b2"/>
+        <cache:cacheKey value="b3"/>
+    </cache:cacheEntity>
+
+    <cache:cacheEntity class="com.hundsun.ppos.basic.dao.po.PposBaseDistrictPo" key-prefix="pposBaseDistrictPo">
+        <cache:cacheKey value="c1"/>
+        <cache:cacheKey value="c2"/>
+        <cache:cacheKey value="c3"/>
+    </cache:cacheEntity>-->
+
+</beans>

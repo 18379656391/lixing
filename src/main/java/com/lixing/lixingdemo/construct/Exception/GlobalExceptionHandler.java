@@ -1,13 +1,18 @@
 package com.lixing.lixingdemo.construct.Exception;
 
+import com.google.common.base.CaseFormat;
 import com.lixing.lixingdemo.construct.basic.ResponseResult;
+import com.lixing.lixingdemo.construct.basic.ResultCode;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.BindException;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -46,6 +51,23 @@ public class GlobalExceptionHandler {
         log.error("【ExceptionControllerAdvice】Param check MethodArgumentNotValidException，参数校验异常：{} \n", msg, e);
         return ResponseResult.fail(msg);
     }
+
+    //@ExceptionHandler({MethodArgumentNotValidException.class, BindException.class})
+//    public ResponseResult validExceptionHandler(MethodArgumentNotValidException e) {
+//        //得到所有的属性错误
+//        List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
+//        //将其组成键值对的形式存入map
+//        StringBuilder sb = new StringBuilder();
+//        for (FieldError fieldError : fieldErrors) {
+//            if (sb.length() > 0) {
+//                sb.append(",");
+//            }
+//            sb.append(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, fieldError.getField()))
+//                    .append(":").append(fieldError.getDefaultMessage());
+//        }
+//        return ResponseResult.fail(ResultCode.PARAM_CHECK_FAILED.getCode(),
+//                String.format(ResultCode.PARAM_CHECK_FAILED.getResultMsg(), sb.toString()));
+//    }
 
     /**
      * ConstraintViolationException-jsr规范中的验证异常，嵌套检验问题

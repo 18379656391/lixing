@@ -2,6 +2,7 @@ package com.lixing.lixingdemo.construct.basic;
 
 import com.util.UniqueIdGenerator;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.ThreadContext;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -25,6 +26,7 @@ public class GlobalResultResponseHandler implements ResponseBodyAdvice<Object> {
         return true;
     }
 
+    // 在aop结束，序列化前调用
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType,
                                   Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
@@ -32,8 +34,7 @@ public class GlobalResultResponseHandler implements ResponseBodyAdvice<Object> {
             body = ResponseResult.success(body);
         }
         // 可以对响应参数进行扩展
-        ResponseResult result = (ResponseResult) body;
-        result.setTraceId(UniqueIdGenerator.getInstance().nextId().toString());
+//        ResponseResult result = (ResponseResult) body;
         return body;
     }
 }

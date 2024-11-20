@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * @author lixing41189
  * @version 1.0
@@ -14,12 +16,14 @@ import org.springframework.stereotype.Component;
  */
 public class SpringApplicationEventListener implements ApplicationListener<SpringApplicationEvent>{
 
+    private static AtomicInteger count = new AtomicInteger(10000);
+
     // @EventListener 注解，在ContextRefreshedEvent事件前的那些事件，都是监听不到的，原理：https://www.bilibili.com/read/cv28239465/
     public void onApplicationEvent(SpringApplicationEvent event) {
-        System.out.println("SpringApplicationEvent=================" + event.getClass().getName() + "监听事件");
+        System.out.println("SpringApplicationEvent=================|" + count.incrementAndGet() +"|" + event.getClass().getName() + "监听事件");
         if (event instanceof ApplicationStartingEvent) {
             // 这个事件在 Spring Boot 应用运行开始时，且进行任何处理之前发送（除了监听器和初始化器注册之外）。
-            //事件无效，因为这个事件社死在ApplicationContext创建前就发生了，所以不可以通过@Bean的方式监听，但是可以在Spring.factories文件中，配置上当前监听器，就可以生效
+            //事件无效，因为这个事件是在ApplicationContext创建前就发生了，所以不可以通过@Bean的方式监听，但是可以在Spring.factories文件中，配置上当前监听器，就可以生效
             System.out.println("SpringApplicationEvent=================" + "1.收到ApplicationStartingEvent监听事件");
         }
         if (event instanceof ApplicationEnvironmentPreparedEvent) {

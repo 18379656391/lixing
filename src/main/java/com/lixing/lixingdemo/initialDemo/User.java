@@ -1,9 +1,7 @@
 package com.lixing.lixingdemo.initialDemo;
 
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
@@ -16,7 +14,7 @@ import java.io.Serializable;
  * @author: lixing41189
  * @date: 2022-02-07 16:08
  */
-public class User implements ApplicationContextAware, InitializingBean, DisposableBean, Serializable {
+public class User implements ApplicationContextAware, BeanNameAware, BeanClassLoaderAware,BeanFactoryAware, InitializingBean, DisposableBean, Serializable {
 
     static{
         System.out.println("("+Thread.currentThread().getName()+")001-->静态代码块执行了");
@@ -30,7 +28,7 @@ public class User implements ApplicationContextAware, InitializingBean, Disposab
     private String age;
 
     public User() {
-        System.out.println("("+Thread.currentThread().getName()+")1-->创建bean实例");
+        System.out.println("("+Thread.currentThread().getName()+")1-->构造函数创建bean实例");
     }
 
     public String getName() {
@@ -39,7 +37,7 @@ public class User implements ApplicationContextAware, InitializingBean, Disposab
 
     public void setName(String name) {
         this.name = name;
-        System.out.println("("+Thread.currentThread().getName()+")2-->设置bean的name属性");
+        System.out.println("("+Thread.currentThread().getName()+")2-->set方法进行依赖注入，设置bean的name属性");
     }
 
     public String getAge() {
@@ -48,7 +46,7 @@ public class User implements ApplicationContextAware, InitializingBean, Disposab
 
     public void setAge(String age) {
         this.age = age;
-        System.out.println("("+Thread.currentThread().getName()+")2-->设置bean的age属性");
+        System.out.println("("+Thread.currentThread().getName()+")2-->set方法进行依赖注入，设置bean的age属性");
     }
 
     @PostConstruct
@@ -82,6 +80,21 @@ public class User implements ApplicationContextAware, InitializingBean, Disposab
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        System.out.println("("+Thread.currentThread().getName()+")3-->调用对应Aware接口的方法");
+        System.out.println("("+Thread.currentThread().getName()+")3-->applicationContextAware重写方法执行，调用对应Aware接口的方法");
+    }
+
+    @Override
+    public void setBeanClassLoader(ClassLoader classLoader) {
+        System.out.println("("+Thread.currentThread().getName()+")3-->BeanCLassLoaderAware重写方法执行，调用对应Aware接口的方法");
+    }
+
+    @Override
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        System.out.println("("+Thread.currentThread().getName()+")3-->BeanFactoryAware重写方法执行，调用对应Aware接口的方法");
+    }
+
+    @Override
+    public void setBeanName(String s) {
+        System.out.println("("+Thread.currentThread().getName()+")3-->BeanNameAware重写方法执行，调用对应Aware接口的方法");
     }
 }
