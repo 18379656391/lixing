@@ -11,7 +11,7 @@ import static java.util.concurrent.ThreadLocalRandom.current;
  * @date 2024/2/27
  * @desc 模拟多线程下增加账号金额：模拟有10个人不断地向这个银行账号里打钱，每次都存入10元
  * https://blog.csdn.net/wyaoyao93/article/details/115868025
- *
+ * 基于CAS算法的原子操作
  * AtomicReference的方法：
  * 1.compareAndSet(V expect, V update)  原子性地更新AtomicReference内部的value值，其中expect代表当前AtomicReference的value值，update则是需要设置的新引用值。
  * 该方法会返回一个boolean的结果，当expect和AtomicReference的当前值不相等时，修改会失败，返回值为false，若修改成功则会返回true。
@@ -27,6 +27,7 @@ import static java.util.concurrent.ThreadLocalRandom.current;
 public class AtomicReferenceExample3 {
 
 
+    // 保证原子操作
     static AtomicReference<DebitCard> debitCardRef = new AtomicReference<>(new DebitCard("zhangsan", 0));
 
     public static void main(String[] args) {

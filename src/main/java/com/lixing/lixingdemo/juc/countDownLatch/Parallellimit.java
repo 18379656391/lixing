@@ -1,4 +1,4 @@
-package com.lixing.lixingdemo.countDownLatch;
+package com.lixing.lixingdemo.juc.countDownLatch;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -8,6 +8,7 @@ import java.util.concurrent.Executors;
  * @version: 1.0
  * @author: lixing41189
  * @date: 2022-01-18 10:55
+ * 等待所有线程执行完后，countDownLatch为0后，才一起继续执行
  */
 public class Parallellimit {
 

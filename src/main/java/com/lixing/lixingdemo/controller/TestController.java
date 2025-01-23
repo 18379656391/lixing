@@ -9,6 +9,7 @@ import com.lixing.lixingdemo.construct.Exception.BusinessException;
 import com.lixing.lixingdemo.construct.HttpMessageConverter.MyEntity;
 import com.lixing.lixingdemo.construct.basic.ResponseResult;
 import com.lixing.lixingdemo.construct.basic.ResultCode;
+import com.lixing.lixingdemo.construct.redis.LuaScriptService;
 import com.lixing.lixingdemo.controller.dto.TestDTO;
 import com.lixing.lixingdemo.controller.dto.TestFormatDTO;
 import com.lixing.lixingdemo.controller.dto.ValueExportFileDTO;
@@ -20,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.lang.reflect.Field;
 import java.util.*;
@@ -36,6 +38,8 @@ import java.util.stream.Collectors;
 @RestController
 @Slf4j
 public class TestController {
+    @Resource
+    private LuaScriptService luaScriptService;
 
     @PostMapping(value = "/test")
     public ResponseResult testMethod() {
@@ -82,6 +86,14 @@ public class TestController {
     @RepeatCommit(key = "#testDTO.date && #testDTO.number", time = 5)
     public ResponseResult<TestDTO> testRepeatCommit(@RequestBody TestDTO testDTO) {
         return ResponseResult.success(testDTO);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/testLua")
+    @SneakyThrows
+    public ResponseResult<String> testLua(@RequestBody TestDTO testDTO) {
+        String result = luaScriptService.executeLua();
+        System.out.println("lua脚本执行返回值----" + result);
+        return ResponseResult.success(result);
     }
 
     @PostMapping(value = "/exportValuationByRule")

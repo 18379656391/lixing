@@ -12,9 +12,11 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication(scanBasePackages = {"com.lixing.lixingdemo"})
-// (this) JDK代理时，指向接口和代理类proxy（通过反射），cglib（通过修改底层字节码）代理时 指向接口和子类(不使用proxy)
+// AspectJ是一个AOP框架，和Spring-Aop类似，Spring-Aop用到的事jdk动态代理和cglib，AspectJ内部使用的是BCEL框架
+// 1.AspectJ是静态代理，在编译期间就生成了class文件，是一种编译技术
+// (this) JDK代理时，指向接口和代理类proxy（通过反射在运行期生成代理类），cglib（通过ASM框架修改底层字节码）代理时 指向接口和子类(不使用proxy)
 // JDK动态代理是通过实现接口的方式，只能代理接口中的方法，
-// -实现原理：根据类加载器和接口创建代理类，此代理类时接口的实现类，使用java.lang.reflect包下的Proxy类和InvocationHandler接口来创建代理对象
+// -实现原理：根据类加载器和接口创建代理类，此代理类是接口的实现类，使用java.lang.reflect包下的Proxy类和InvocationHandler接口来创建代理对象
 // -实现方式：通过实现InvocationHandler接口创建自己的调用处理器，然后使用Proxy类的newProxyInstance方法生成代理对象。这个代理对象会实现目标对象所实现的接口，并在调用目标方法时，将调用转发给InvocationHandler接口的invoke方法。
 // cglib是通过继承的方式生成代理类，可以代理没有实现接口的类，可以对对象中的方法进行代理，无法代理final的类和方法或者private的方法（因为继承）
 // -实现原理：cglib是一个代码生成的库，它可以在运行时动态生成目标类的子类，并通过子类来拦截和增强方法的调用

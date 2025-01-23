@@ -1,4 +1,4 @@
-package com.lixing.lixingdemo.ForkJoinDemo;
+package com.lixing.lixingdemo.asyncDemo.ForkJoinDemo;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;

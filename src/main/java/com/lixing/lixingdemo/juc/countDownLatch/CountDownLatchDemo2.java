@@ -1,4 +1,4 @@
-package com.lixing.lixingdemo.countDownLatch;
+package com.lixing.lixingdemo.juc.countDownLatch;
 
 import org.elasticsearch.common.util.concurrent.CountDown;
 

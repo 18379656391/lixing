@@ -1,4 +1,4 @@
-package com.lixing.lixingdemo.countDownLatch;
+package com.lixing.lixingdemo.juc.countDownLatch;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -9,7 +9,7 @@ import java.util.concurrent.Executors;
  * @author: lixing41189
  * @date: 2022-01-17 18:24
  * 场景1：启动一个服务时，等待多个组件加载完毕后，之后继续执行
- * CountDownLatch不能重用，如果需要重新计数，可以使用CyclicBarrier
+ * CountDownLatch的缺点是不能重用，如果需要重新计数，可以使用CyclicBarrier
  */
 public class CountDownLatchDemo {
     public static void main(String[] args) {

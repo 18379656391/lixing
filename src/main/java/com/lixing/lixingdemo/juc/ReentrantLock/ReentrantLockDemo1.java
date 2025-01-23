@@ -28,8 +28,8 @@ public class ReentrantLockDemo1 {
     }
 
     public static void main(String[] args) {
-        ExecutorService pool = Executors.newFixedThreadPool(2);
-        for (int i = 0; i < 2; i++) {
+        ExecutorService pool = Executors.newFixedThreadPool(5);
+        for (int i = 0; i < 5; i++) {
             pool.submit(()->{
                 test();
             });

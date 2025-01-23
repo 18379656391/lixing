@@ -16,7 +16,7 @@ public class ProxyInvocationHandler implements InvocationHandler {
         return target;
     }
 
-    //通过类加载器和忌口创建代理类
+    //通过类加载器和接口创建代理类
     public Object getProxy() {
         return Proxy.newProxyInstance(this.getClass().getClassLoader(), target.getClass().getInterfaces(), this);
     }

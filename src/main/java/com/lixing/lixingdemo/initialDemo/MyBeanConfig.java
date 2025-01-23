@@ -18,6 +18,9 @@ public class MyBeanConfig {
         User user = new User();
         user.setAge("22");
         user.setName("lixing");
+        //  当类的静态变量或者静态方法被调用时，在调用之前，会执行一次静态代码块中的内容，并且只会执行一次
+        System.out.println("执行获取静态变量方法--" + StaticUser.staticValue);
+        System.out.println("执行静态方法--" + StaticUser.getStaticValue());
         return user;
     }
     @Bean(initMethod = "init")
