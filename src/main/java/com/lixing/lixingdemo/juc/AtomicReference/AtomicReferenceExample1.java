@@ -20,7 +20,7 @@ import static java.util.concurrent.ThreadLocalRandom.current;
  * 这两个步骤单独来说都是原子性操作，但是组合起来就无法保证原子性了 (synchronized关键字既可以保证原子性，又可以保证可见性)
  * 解决方案：
  * 1.加锁 AtomicReferenceExample2
- * 2.使用AtomicReference的非阻塞解决方案 AtomicReferenceExample3，存在ABA问题（解决 1.加版本号或者标记（AtomicMarkableReference） 2.加时间戳（带有时间戳的CAS操作类AtomicStampedeReference））
+ * 2.使用AtomicReference的非阻塞解决方案 AtomicReferenceExample3，存在ABA问题（解决 1.加版本号或者标记（AtomicMarkableReference） 2.加时间戳（带有时间戳的CAS操作类AtomicStampedReference））
  */
 public class AtomicReferenceExample1 {
 

@@ -8,13 +8,13 @@ import javax.servlet.ServletContextListener;
  * @author lixing41189
  * @version 1.0
  * @date 2024/7/18
- * ServeletContext和事件监听生效的时机，实际也是在Application的ContextRefresh期间
+ * ServletContext和事件监听生效的时机，实际也是在Application的ContextRefresh期间
  */
 @Component
 public class MyServletContextListener implements ServletContextListener {
 
     /**
-     * ServletContext初始化后执行
+     * ServletContext销毁触发，一般就是应用结束的时候
      * @param servletContextEvent
      */
     @Override
@@ -23,7 +23,7 @@ public class MyServletContextListener implements ServletContextListener {
     }
 
     /**
-     * ServletContext销毁触发，一般就是应用结束的时候
+     * ServletContext初始化后执行
      * @param servletContextEvent
      */
     @Override

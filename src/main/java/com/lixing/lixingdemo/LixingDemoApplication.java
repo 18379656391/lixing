@@ -12,7 +12,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication(scanBasePackages = {"com.lixing.lixingdemo"})
-// AspectJ是一个AOP框架，和Spring-Aop类似，Spring-Aop用到的事jdk动态代理和cglib，AspectJ内部使用的是BCEL框架
+// AspectJ是一个AOP框架，和Spring-Aop类似，Spring-Aop用到的是jdk动态代理和cglib，AspectJ内部使用的是BCEL框架
 // 1.AspectJ是静态代理，在编译期间就生成了class文件，是一种编译技术
 // (this) JDK代理时，指向接口和代理类proxy（通过反射在运行期生成代理类），cglib（通过ASM框架修改底层字节码）代理时 指向接口和子类(不使用proxy)
 // JDK动态代理是通过实现接口的方式，只能代理接口中的方法，

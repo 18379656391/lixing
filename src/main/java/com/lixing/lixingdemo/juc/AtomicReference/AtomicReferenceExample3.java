@@ -1,7 +1,9 @@
 package com.lixing.lixingdemo.juc.AtomicReference;
 
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicMarkableReference;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.atomic.AtomicStampedReference;
 
 import static java.util.concurrent.ThreadLocalRandom.current;
 
@@ -29,6 +31,10 @@ public class AtomicReferenceExample3 {
 
     // 保证原子操作
     static AtomicReference<DebitCard> debitCardRef = new AtomicReference<>(new DebitCard("zhangsan", 0));
+    // 使用版本号或者标记 解决 ABA问题
+    AtomicMarkableReference<DebitCard> markableReference = new AtomicMarkableReference<>(new DebitCard("zhangsan", 0), false);
+    // 使用时间戳解决ABA问题
+    AtomicStampedReference<DebitCard> stampedeReference = new AtomicStampedReference<>(new DebitCard("zhangsan", 0), 1001);
 
     public static void main(String[] args) {
         for (int i = 0; i < 10; i++) {

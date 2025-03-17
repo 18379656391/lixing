@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
  * @author lixing41189
  * @version 1.0
  * @date 2024/10/10
+ * 只适用于表单提交数据或者url传参，比如硬件编码，json格式的请求参数处理使用的是CommaJson*的配置
  */
 public class CommaFormatter implements Formatter<ArrayList<String>> {
     // 用于接受注解的参数（指定分隔符）

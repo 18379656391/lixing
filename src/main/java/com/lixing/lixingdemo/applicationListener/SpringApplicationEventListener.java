@@ -8,6 +8,9 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.DoubleAdder;
+import java.util.concurrent.atomic.LongAdder;
 
 /**
  * @author lixing41189
@@ -17,6 +20,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class SpringApplicationEventListener implements ApplicationListener<SpringApplicationEvent>{
 
     private static AtomicInteger count = new AtomicInteger(10000);
+    // AtomicLong
+    // LongAdder和DoubleAdder是为了解决高并发计数场景中AtomicLong的性能瓶颈而设计的，它们采用分段计数的方式来减少竞争。
+    LongAdder longAdder = new LongAdder();
+    DoubleAdder doubleAdder = new DoubleAdder();
 
     // @EventListener 注解，在ContextRefreshedEvent事件前的那些事件，都是监听不到的，原理：https://www.bilibili.com/read/cv28239465/
     public void onApplicationEvent(SpringApplicationEvent event) {

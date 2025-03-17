@@ -14,7 +14,7 @@ import java.util.Date;
  * 2.线程安全的，避免某些情况需要考虑线程安全必须同步带来的性能损失
  * 3.做数据隔离，如果创建一个ThreadLocal变量，访问这个变量的每个线程都会有这个变量的副本，操作的是自己本地内存中的变量，从而规避线程安全问题
  *
- * 线程不安全原因：内部使用的是父类DateFormat的calendar实例变量，在Calendar.establish()方法中会先后调用cal.clear()和cal.set();由于Calendar内部并没有线程安全机制并且对象多线程共享，所以存在线程安全问题
+ * SimpleDateFormat 线程不安全原因：内部使用的是父类DateFormat的calendar实例变量，在Calendar.establish()方法中会先后调用cal.clear()和cal.set();由于Calendar内部并没有线程安全机制并且对象多线程共享，所以存在线程安全问题
  * parse()和format()方法都存在线程安全问题
  *解决方法：1.局部变量 2.ThreadLocal 3.加锁 4.DateTimeFormatter
  */

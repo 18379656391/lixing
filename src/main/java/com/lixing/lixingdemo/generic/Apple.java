@@ -52,6 +52,7 @@ public class Apple extends Fruits {
 
 
         // 匿名内部类
+        // 格式：new 父类/接口名(){重写方法();}
         new Fruits() {
             @Override
             protected int count() {
